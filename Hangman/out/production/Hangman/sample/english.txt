@@ -1,466 +1,999 @@
-        boolean 	add(E e)
-        Appends the specified element to the end of this list (optional operation).
-        void 	add(int index, E element)
-        Inserts the specified element at the specified position in this list (optional operation).
-        boolean 	addAll(Collection<? extends E> c)
-        Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
-        boolean 	addAll(int index, Collection<? extends E> c)
-        Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
-        void 	clear()
-        Removes all of the elements from this list (optional operation).
-        boolean 	contains(Object o)
-        Returns true if this list contains the specified element.
-        boolean 	containsAll(Collection<?> c)
-        Returns true if this list contains all of the elements of the specified collection.
-        boolean 	equals(Object o)
-        Compares the specified object with this list for equality.
-        E 	get(int index)
-        Returns the element at the specified position in this list.
-        int 	hashCode()
-        Returns the hash code value for this list.
-        int 	indexOf(Object o)
-        Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
-        boolean 	isEmpty()
-        Returns true if this list contains no elements.
-        Iterator<E> 	iterator()
-        Returns an iterator over the elements in this list in proper sequence.
-        int 	lastIndexOf(Object o)
-        Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
-        ListIterator<E> 	listIterator()
-        Returns a list iterator over the elements in this list (in proper sequence).
-        ListIterator<E> 	listIterator(int index)
-        Returns a list iterator over the elements in this list (in proper sequence), starting at the specified position in the list.
-        E 	remove(int index)
-        Removes the element at the specified position in this list (optional operation).
-        boolean 	remove(Object o)
-        Removes the first occurrence of the specified element from this list, if it is present (optional operation).
-        boolean 	removeAll(Collection<?> c)
-        Removes from this list all of its elements that are contained in the specified collection (optional operation).
-        boolean 	retainAll(Collection<?> c)
-        Retains only the elements in this list that are contained in the specified collection (optional operation).
-        E 	set(int index, E element)
-        Replaces the element at the specified position in this list with the specified element (optional operation).
-        int 	size()
-        Returns the number of elements in this list.
-        List<E> 	subList(int fromIndex, int toIndex)
-        Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
-        Object[] 	toArray()
-        Returns an array containing all of the elements in this list in proper sequence (from first to last element).
-        <T> T[] 	toArray(T[] a)
-        Returns an array containing all of the elements in this list in proper sequence (from first to last element); the runtime type of the returned array is that of the specified array.
-
-        Method Detail
-            size
-
-            int size()
-
-            Returns the number of elements in this list. If this list contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
-
-            Specified by:
-                size in interface Collection<E>
-            Returns:
-                the number of elements in this list
-
-            isEmpty
-
-            boolean isEmpty()
-
-            Returns true if this list contains no elements.
-
-            Specified by:
-                isEmpty in interface Collection<E>
-            Returns:
-                true if this list contains no elements
-
-            contains
-
-            boolean contains(Object o)
-
-            Returns true if this list contains the specified element. More formally, returns true if and only if this list contains at least one element e such that (o==null ? e==null : o.equals(e)).
-
-            Specified by:
-                contains in interface Collection<E>
-            Parameters:
-                o - element whose presence in this list is to be tested
-            Returns:
-                true if this list contains the specified element
-            Throws:
-                ClassCastException - if the type of the specified element is incompatible with this list (optional)
-                NullPointerException - if the specified element is null and this list does not permit null elements (optional)
-
-            iterator
-
-            Iterator<E> iterator()
-
-            Returns an iterator over the elements in this list in proper sequence.
-
-            Specified by:
-                iterator in interface Collection<E>
-            Specified by:
-                iterator in interface Iterable<E>
-            Returns:
-                an iterator over the elements in this list in proper sequence
-
-            toArray
-
-            Object[] toArray()
-
-            Returns an array containing all of the elements in this list in proper sequence (from first to last element).
-
-            The returned array will be "safe" in that no references to it are maintained by this list. (In other words, this method must allocate a new array even if this list is backed by an array). The caller is thus free to modify the returned array.
-
-            This method acts as bridge between array-based and collection-based APIs.
-
-            Specified by:
-                toArray in interface Collection<E>
-            Returns:
-                an array containing all of the elements in this list in proper sequence
-            See Also:
-                Arrays.asList(Object[])
-
-            toArray
-
-            <T> T[] toArray(T[] a)
-
-            Returns an array containing all of the elements in this list in proper sequence (from first to last element); the runtime type of the returned array is that of the specified array. If the list fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this list.
-
-            If the list fits in the specified array with room to spare (i.e., the array has more elements than the list), the element in the array immediately following the end of the list is set to null. (This is useful in determining the length of the list only if the caller knows that the list does not contain any null elements.)
-
-            Like the toArray() method, this method acts as bridge between array-based and collection-based APIs. Further, this method allows precise control over the runtime type of the output array, and may, under certain circumstances, be used to save allocation costs.
-
-            Suppose x is a list known to contain only strings. The following code can be used to dump the list into a newly allocated array of String:
-
-                 String[] y = x.toArray(new String[0]);
-
-            Note that toArray(new Object[0]) is identical in function to toArray().
-
-            Specified by:
-                toArray in interface Collection<E>
-            Parameters:
-                a - the array into which the elements of this list are to be stored, if it is big enough; otherwise, a new array of the same runtime type is allocated for this purpose.
-            Returns:
-                an array containing the elements of this list
-            Throws:
-                ArrayStoreException - if the runtime type of the specified array is not a supertype of the runtime type of every element in this list
-                NullPointerException - if the specified array is null
-
-            add
-
-            boolean add(E e)
-
-            Appends the specified element to the end of this list (optional operation).
-
-            Lists that support this operation may place limitations on what elements may be added to this list. In particular, some lists will refuse to add null elements, and others will impose restrictions on the type of elements that may be added. List classes should clearly specify in their documentation any restrictions on what elements may be added.
-
-            Specified by:
-                add in interface Collection<E>
-            Parameters:
-                e - element to be appended to this list
-            Returns:
-                true (as specified by Collection.add(E))
-            Throws:
-                UnsupportedOperationException - if the add operation is not supported by this list
-                ClassCastException - if the class of the specified element prevents it from being added to this list
-                NullPointerException - if the specified element is null and this list does not permit null elements
-                IllegalArgumentException - if some property of this element prevents it from being added to this list
-
-            remove
-
-            boolean remove(Object o)
-
-            Removes the first occurrence of the specified element from this list, if it is present (optional operation). If this list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
-
-            Specified by:
-                remove in interface Collection<E>
-            Parameters:
-                o - element to be removed from this list, if present
-            Returns:
-                true if this list contained the specified element
-            Throws:
-                ClassCastException - if the type of the specified element is incompatible with this list (optional)
-                NullPointerException - if the specified element is null and this list does not permit null elements (optional)
-                UnsupportedOperationException - if the remove operation is not supported by this list
-
-            containsAll
-
-            boolean containsAll(Collection<?> c)
-
-            Returns true if this list contains all of the elements of the specified collection.
-
-            Specified by:
-                containsAll in interface Collection<E>
-            Parameters:
-                c - collection to be checked for containment in this list
-            Returns:
-                true if this list contains all of the elements of the specified collection
-            Throws:
-                ClassCastException - if the types of one or more elements in the specified collection are incompatible with this list (optional)
-                NullPointerException - if the specified collection contains one or more null elements and this list does not permit null elements (optional), or if the specified collection is null
-            See Also:
-                contains(Object)
-
-            addAll
-
-            boolean addAll(Collection<? extends E> c)
-
-            Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation). The behavior of this operation is undefined if the specified collection is modified while the operation is in progress. (Note that this will occur if the specified collection is this list, and it's nonempty.)
-
-            Specified by:
-                addAll in interface Collection<E>
-            Parameters:
-                c - collection containing elements to be added to this list
-            Returns:
-                true if this list changed as a result of the call
-            Throws:
-                UnsupportedOperationException - if the addAll operation is not supported by this list
-                ClassCastException - if the class of an element of the specified collection prevents it from being added to this list
-                NullPointerException - if the specified collection contains one or more null elements and this list does not permit null elements, or if the specified collection is null
-                IllegalArgumentException - if some property of an element of the specified collection prevents it from being added to this list
-            See Also:
-                add(Object)
-
-            addAll
-
-            boolean addAll(int index,
-                         Collection<? extends E> c)
-
-            Inserts all of the elements in the specified collection into this list at the specified position (optional operation). Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in this list in the order that they are returned by the specified collection's iterator. The behavior of this operation is undefined if the specified collection is modified while the operation is in progress. (Note that this will occur if the specified collection is this list, and it's nonempty.)
-
-            Parameters:
-                index - index at which to insert the first element from the specified collection
-                c - collection containing elements to be added to this list
-            Returns:
-                true if this list changed as a result of the call
-            Throws:
-                UnsupportedOperationException - if the addAll operation is not supported by this list
-                ClassCastException - if the class of an element of the specified collection prevents it from being added to this list
-                NullPointerException - if the specified collection contains one or more null elements and this list does not permit null elements, or if the specified collection is null
-                IllegalArgumentException - if some property of an element of the specified collection prevents it from being added to this list
-                IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
-
-            removeAll
-
-            boolean removeAll(Collection<?> c)
-
-            Removes from this list all of its elements that are contained in the specified collection (optional operation).
-
-            Specified by:
-                removeAll in interface Collection<E>
-            Parameters:
-                c - collection containing elements to be removed from this list
-            Returns:
-                true if this list changed as a result of the call
-            Throws:
-                UnsupportedOperationException - if the removeAll operation is not supported by this list
-                ClassCastException - if the class of an element of this list is incompatible with the specified collection (optional)
-                NullPointerException - if this list contains a null element and the specified collection does not permit null elements (optional), or if the specified collection is null
-            See Also:
-                remove(Object), contains(Object)
-
-            retainAll
-
-            boolean retainAll(Collection<?> c)
-
-            Retains only the elements in this list that are contained in the specified collection (optional operation). In other words, removes from this list all of its elements that are not contained in the specified collection.
-
-            Specified by:
-                retainAll in interface Collection<E>
-            Parameters:
-                c - collection containing elements to be retained in this list
-            Returns:
-                true if this list changed as a result of the call
-            Throws:
-                UnsupportedOperationException - if the retainAll operation is not supported by this list
-                ClassCastException - if the class of an element of this list is incompatible with the specified collection (optional)
-                NullPointerException - if this list contains a null element and the specified collection does not permit null elements (optional), or if the specified collection is null
-            See Also:
-                remove(Object), contains(Object)
-
-            clear
-
-            void clear()
-
-            Removes all of the elements from this list (optional operation). The list will be empty after this call returns.
-
-            Specified by:
-                clear in interface Collection<E>
-            Throws:
-                UnsupportedOperationException - if the clear operation is not supported by this list
-
-            equals
-
-            boolean equals(Object o)
-
-            Compares the specified object with this list for equality. Returns true if and only if the specified object is also a list, both lists have the same size, and all corresponding pairs of elements in the two lists are equal. (Two elements e1 and e2 are equal if (e1==null ? e2==null : e1.equals(e2)).) In other words, two lists are defined to be equal if they contain the same elements in the same order. This definition ensures that the equals method works properly across different implementations of the List interface.
-
-            Specified by:
-                equals in interface Collection<E>
-            Overrides:
-                equals in class Object
-            Parameters:
-                o - the object to be compared for equality with this list
-            Returns:
-                true if the specified object is equal to this list
-            See Also:
-                Object.hashCode(), HashMap
-
-            hashCode
-
-            int hashCode()
-
-            Returns the hash code value for this list. The hash code of a list is defined to be the result of the following calculation:
-
-              int hashCode = 1;
-              for (E e : list)
-                  hashCode = 31*hashCode + (e==null ? 0 : e.hashCode());
-             
-
-            This ensures that list1.equals(list2) implies that list1.hashCode()==list2.hashCode() for any two lists, list1 and list2, as required by the general contract of Object.hashCode().
-
-            Specified by:
-                hashCode in interface Collection<E>
-            Overrides:
-                hashCode in class Object
-            Returns:
-                the hash code value for this list
-            See Also:
-                Object.equals(Object), equals(Object)
-
-            get
-
-            E get(int index)
-
-            Returns the element at the specified position in this list.
-
-            Parameters:
-                index - index of the element to return
-            Returns:
-                the element at the specified position in this list
-            Throws:
-                IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
-
-            set
-
-            E set(int index,
-                E element)
-
-            Replaces the element at the specified position in this list with the specified element (optional operation).
-
-            Parameters:
-                index - index of the element to replace
-                element - element to be stored at the specified position
-            Returns:
-                the element previously at the specified position
-            Throws:
-                UnsupportedOperationException - if the set operation is not supported by this list
-                ClassCastException - if the class of the specified element prevents it from being added to this list
-                NullPointerException - if the specified element is null and this list does not permit null elements
-                IllegalArgumentException - if some property of the specified element prevents it from being added to this list
-                IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
-
-            add
-
-            void add(int index,
-                   E element)
-
-            Inserts the specified element at the specified position in this list (optional operation). Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
-
-            Parameters:
-                index - index at which the specified element is to be inserted
-                element - element to be inserted
-            Throws:
-                UnsupportedOperationException - if the add operation is not supported by this list
-                ClassCastException - if the class of the specified element prevents it from being added to this list
-                NullPointerException - if the specified element is null and this list does not permit null elements
-                IllegalArgumentException - if some property of the specified element prevents it from being added to this list
-                IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
-
-            remove
-
-            E remove(int index)
-
-            Removes the element at the specified position in this list (optional operation). Shifts any subsequent elements to the left (subtracts one from their indices). Returns the element that was removed from the list.
-
-            Parameters:
-                index - the index of the element to be removed
-            Returns:
-                the element previously at the specified position
-            Throws:
-                UnsupportedOperationException - if the remove operation is not supported by this list
-                IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
-
-            indexOf
-
-            int indexOf(Object o)
-
-            Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element. More formally, returns the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
-
-            Parameters:
-                o - element to search for
-            Returns:
-                the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
-            Throws:
-                ClassCastException - if the type of the specified element is incompatible with this list (optional)
-                NullPointerException - if the specified element is null and this list does not permit null elements (optional)
-
-            lastIndexOf
-
-            int lastIndexOf(Object o)
-
-            Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element. More formally, returns the highest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
-
-            Parameters:
-                o - element to search for
-            Returns:
-                the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
-            Throws:
-                ClassCastException - if the type of the specified element is incompatible with this list (optional)
-                NullPointerException - if the specified element is null and this list does not permit null elements (optional)
-
-            listIterator
-
-            ListIterator<E> listIterator()
-
-            Returns a list iterator over the elements in this list (in proper sequence).
-
-            Returns:
-                a list iterator over the elements in this list (in proper sequence)
-
-            listIterator
-
-            ListIterator<E> listIterator(int index)
-
-            Returns a list iterator over the elements in this list (in proper sequence), starting at the specified position in the list. The specified index indicates the first element that would be returned by an initial call to next. An initial call to previous would return the element with the specified index minus one.
-
-            Parameters:
-                index - index of the first element to be returned from the list iterator (by a call to next)
-            Returns:
-                a list iterator over the elements in this list (in proper sequence), starting at the specified position in the list
-            Throws:
-                IndexOutOfBoundsException - if the index is out of range (index < 0 || index > size())
-
-            subList
-
-            List<E> subList(int fromIndex,
-                          int toIndex)
-
-            Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive. (If fromIndex and toIndex are equal, the returned list is empty.) The returned list is backed by this list, so non-structural changes in the returned list are reflected in this list, and vice-versa. The returned list supports all of the optional list operations supported by this list.
-
-            This method eliminates the need for explicit range operations (of the sort that commonly exist for arrays). Any operation that expects a list can be used as a range operation by passing a subList view instead of a whole list. For example, the following idiom removes a range of elements from a list:
-
-                  list.subList(from, to).clear();
-             
-
-            Similar idioms may be constructed for indexOf and lastIndexOf, and all of the algorithms in the Collections class can be applied to a subList.
-
-            The semantics of the list returned by this method become undefined if the backing list (i.e., this list) is structurally modified in any way other than via the returned list. (Structural modifications are those that change the size of this list, or otherwise perturb it in such a fashion that iterations in progress may yield incorrect results.)
-
-            Parameters:
-                fromIndex - low endpoint (inclusive) of the subList
-                toIndex - high endpoint (exclusive) of the subList
-            Returns:
-                a view of the specified range within this list
-            Throws:
-                IndexOutOfBoundsException - for an illegal endpoint index value (fromIndex < 0 || toIndex > size || fromIndex > toIndex)
-
-
+ability
+able
+about
+above
+accept
+according
+account
+across
+act
+action
+activity
+actually
+add
+address
+administration
+admit
+adult
+affect
+after
+again
+against
+age
+agency
+agent
+ago
+agree
+agreement
+ahead
+air
+all
+allow
+almost
+alone
+along
+already
+also
+although
+always
+American
+among
+amount
+analysis
+and
+animal
+another
+answer
+any
+anyone
+anything
+appear
+apply
+approach
+area
+argue
+arm
+around
+arrive
+art
+article
+artist
+as
+ask
+assume
+at
+attack
+attention
+attorney
+audience
+author
+authority
+available
+avoid
+away
+baby
+back
+bad
+bag
+ball
+bank
+bar
+base
+be
+beat
+beautiful
+because
+become
+bed
+before
+begin
+behavior
+behind
+believe
+benefit
+best
+better
+between
+beyond
+big
+bill
+billion
+bit
+black
+blood
+blue
+board
+body
+book
+born
+both
+box
+boy
+break
+bring
+brother
+budget
+build
+building
+business
+but
+buy
+by
+call
+camera
+campaign
+can
+cancer
+candidate
+capital
+car
+card
+care
+career
+carry
+case
+catch
+cause
+cell
+center
+central
+century
+certain
+certainly
+chair
+challenge
+chance
+change
+character
+charge
+check
+child
+choice
+choose
+church
+citizen
+city
+civil
+claim
+class
+clear
+clearly
+close
+coach
+cold
+collection
+college
+color
+come
+commercial
+common
+community
+company
+compare
+computer
+concern
+condition
+conference
+Congress
+consider
+consumer
+contain
+continue
+control
+cost
+could
+country
+couple
+course
+court
+cover
+create
+crime
+cultural
+culture
+cup
+current
+customer
+cut
+dark
+data
+daughter
+day
+dead
+deal
+death
+debate
+decade
+decide
+decision
+deep
+defense
+degree
+Democrat
+democratic
+describe
+design
+despite
+detail
+determine
+develop
+development
+die
+difference
+different
+difficult
+dinner
+direction
+director
+discover
+discuss
+discussion
+disease
+do
+doctor
+dog
+door
+down
+draw
+dream
+drive
+drop
+drug
+during
+each
+early
+east
+easy
+eat
+economic
+economy
+edge
+education
+effect
+effort
+eight
+either
+election
+else
+employee
+end
+energy
+enjoy
+enough
+enter
+entire
+environment
+environmental
+especially
+establish
+even
+evening
+event
+ever
+every
+everybody
+everyone
+everything
+evidence
+exactly
+example
+executive
+exist
+expect
+experience
+expert
+explain
+eye
+face
+fact
+factor
+fail
+fall
+family
+far
+fast
+father
+fear
+federal
+feel
+feeling
+few
+field
+fight
+figure
+fill
+film
+final
+finally
+financial
+find
+fine
+finger
+finish
+fire
+firm
+first
+fish
+five
+floor
+fly
+focus
+follow
+food
+foot
+for
+force
+foreign
+forget
+form
+former
+forward
+four
+free
+friend
+from
+front
+full
+fund
+future
+game
+garden
+gas
+general
+generation
+get
+girl
+give
+glass
+go
+goal
+good
+government
+great
+green
+ground
+group
+grow
+growth
+guess
+gun
+guy
+hair
+half
+hand
+hang
+happen
+happy
+hard
+have
+he
+head
+health
+hear
+heart
+heat
+heavy
+help
+her
+here
+herself
+high
+him
+himself
+his
+history
+hit
+hold
+home
+hope
+hospital
+hot
+hotel
+hour
+house
+how
+however
+huge
+human
+hundred
+husband
+I
+idea
+identify
+if
+image
+imagine
+impact
+important
+improve
+in
+include
+including
+increase
+indeed
+indicate
+individual
+industry
+information
+inside
+instead
+institution
+interest
+interesting
+international
+interview
+into
+investment
+involve
+issue
+it
+item
+its
+itself
+job
+join
+just
+keep
+key
+kid
+kill
+kind
+kitchen
+know
+knowledge
+land
+language
+large
+last
+late
+later
+laugh
+law
+lawyer
+lay
+lead
+leader
+learn
+least
+leave
+left
+leg
+legal
+less
+let
+letter
+level
+lie
+life
+light
+like
+likely
+line
+list
+listen
+little
+live
+local
+long
+look
+lose
+loss
+lot
+love
+low
+machine
+magazine
+main
+maintain
+major
+majority
+make
+man
+manage
+management
+manager
+many
+market
+marriage
+material
+matter
+may
+maybe
+me
+mean
+measure
+media
+medical
+meet
+meeting
+member
+memory
+mention
+message
+method
+middle
+might
+military
+million
+mind
+minute
+miss
+mission
+model
+modern
+moment
+money
+month
+more
+morning
+most
+mother
+mouth
+move
+movement
+movie
+Mr
+Mrs
+much
+music
+must
+my
+myself
+name
+nation
+national
+natural
+nature
+near
+nearly
+necessary
+need
+network
+never
+new
+news
+newspaper
+next
+nice
+night
+no
+none
+nor
+north
+not
+note
+nothing
+notice
+now
+n't
+number
+occur
+of
+off
+offer
+office
+officer
+official
+often
+oh
+oil
+ok
+old
+on
+once
+one
+only
+onto
+open
+operation
+opportunity
+option
+or
+order
+organization
+other
+others
+our
+out
+outside
+over
+own
+owner
+page
+pain
+painting
+paper
+parent
+part
+participant
+particular
+particularly
+partner
+party
+pass
+past
+patient
+pattern
+pay
+peace
+people
+per
+perform
+performance
+perhaps
+period
+person
+personal
+phone
+physical
+pick
+picture
+piece
+place
+plan
+plant
+play
+player
+PM
+point
+police
+policy
+political
+politics
+poor
+popular
+population
+position
+positive
+possible
+power
+practice
+prepare
+present
+president
+pressure
+pretty
+prevent
+price
+private
+probably
+problem
+process
+produce
+product
+production
+professional
+professor
+program
+project
+property
+protect
+prove
+provide
+public
+pull
+purpose
+push
+put
+quality
+question
+quickly
+quite
+race
+radio
+raise
+range
+rate
+rather
+reach
+read
+ready
+real
+reality
+realize
+really
+reason
+receive
+recent
+recently
+recognize
+record
+red
+reduce
+reflect
+region
+relate
+relationship
+religious
+remain
+remember
+remove
+report
+represent
+Republican
+require
+research
+resource
+respond
+response
+responsibility
+rest
+result
+return
+reveal
+rich
+right
+rise
+risk
+road
+rock
+role
+room
+rule
+run
+safe
+same
+save
+say
+scene
+school
+science
+scientist
+score
+sea
+season
+seat
+second
+section
+security
+see
+seek
+seem
+sell
+send
+senior
+sense
+series
+serious
+serve
+service
+set
+seven
+several
+sex
+sexual
+shake
+share
+she
+shoot
+short
+shot
+should
+shoulder
+show
+side
+sign
+significant
+similar
+simple
+simply
+since
+sing
+single
+sister
+sit
+site
+situation
+six
+size
+skill
+skin
+small
+smile
+so
+social
+society
+soldier
+some
+somebody
+someone
+something
+sometimes
+son
+song
+soon
+sort
+sound
+source
+south
+southern
+space
+speak
+special
+specific
+speech
+spend
+sport
+spring
+staff
+stage
+stand
+standard
+star
+start
+state
+statement
+station
+stay
+step
+still
+stock
+stop
+store
+story
+strategy
+street
+strong
+structure
+student
+study
+stuff
+style
+subject
+success
+successful
+such
+suddenly
+suffer
+suggest
+summer
+support
+sure
+surface
+system
+table
+take
+talk
+task
+tax
+teach
+teacher
+team
+technology
+television
+tell
+ten
+tend
+term
+test
+than
+thank
+that
+the
+their
+them
+themselves
+then
+theory
+there
+these
+they
+thing
+think
+third
+this
+those
+though
+thought
+thousand
+threat
+three
+through
+throughout
+throw
+thus
+time
+to
+today
+together
+tonight
+too
+top
+total
+tough
+toward
+town
+trade
+traditional
+training
+travel
+treat
+treatment
+tree
+trial
+trip
+trouble
+true
+truth
+try
+turn
+TV
+two
+type
+under
+understand
+unit
+until
+up
+upon
+us
+use
+usually
+value
+various
+very
+victim
+view
+violence
+visit
+voice
+vote
+wait
+walk
+wall
+want
+war
+watch
+water
+way
+we
+weapon
+wear
+week
+weight
+well
+west
+western
+what
+whatever
+when
+where
+whether
+which
+while
+white
+who
+whole
+whom
+whose
+why
+wide
+wife
+will
+win
+wind
+window
+wish
+with
+within
+without
+woman
+wonder
+word
+work
+worker
+world
+worry
+would
+write
+writer
+wrong
+yard
+yeah
+year
+yes
+yet
+you
+young
+your
+yourself
