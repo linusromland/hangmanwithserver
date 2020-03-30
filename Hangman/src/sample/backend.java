@@ -3,7 +3,6 @@ package sample;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -20,6 +19,7 @@ public class backend {
     public static int _guess = 0;
     public static String _show[] = new String[999];
     public static int _maxguesses = 10;
+    public static String _guessletters = "";
 
     /**
      * This main method is temporary for me to test the code
@@ -89,6 +89,7 @@ public class backend {
             else{
                 System.out.println(Guess(guess1));
             }
+            
         }
     }
 
@@ -154,29 +155,36 @@ public class backend {
     public static String Guess(String guess){
         String returnstring = "";
         if(_guess < _maxguesses) { //checks if you have any lives left
-            if (guess.length() > 1) { //checks if you guessed a word or char.
-                if (guess.equals(_secretword)) { //checks if you got the word right
-                   returnstring = "Congrats";
-                }
-                else{
-                    returnstring = _language.get(5);
-                }
-            }
-            else{
-                if(_secretword.contains(guess)){ //checks if the word contains the letter
-                    returnstring =_language.get(6);
-                    for (int i = 0; i < _secretword.length(); i++) {
-                        if(_secretword.charAt(i) == guess.charAt(0)){
-                            _show[i] = guess.toUpperCase().charAt(0) + "  ";
+            if(_guessletters.contains(guess)) {
+                if (guess.length() > 1) { //checks if you guessed a word or char.
+                    if (guess.equals(_secretword)) { //checks if you got the word right
+                        returnstring = "Congrats";
+                    } else {
+                        returnstring = _language.get(5);
+                    }
+                } else {
+                    if (_secretword.contains(guess)) { //checks if the word contains the letter
+                        returnstring = _language.get(6);
+                        for (int i = 0; i < _secretword.length(); i++) {
+                            if (_secretword.charAt(i) == guess.charAt(0)) {
+                                _show[i] = guess.toUpperCase().charAt(0) + "  ";
+                            }
                         }
                     }
                 }
             }
+            else{
+                returnstring = "already";
+            }
         }
         else{
             returnstring = "lose";
+            System.out.println(8 + guess);
+            _guess--;
         }
         _guess++;
+        _guessletters += guess;
+        System.out.println(_guessletters);
         return returnstring;
     }
 

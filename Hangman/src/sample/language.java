@@ -21,6 +21,7 @@ public class language {
             toReturn.add("Det var inte ordet! Försök igen!");
             toReturn.add("Du hittade ett bokstav! ");
             toReturn.add("Max antalet gissngar satt till ");
+            toReturn.add("Du har redan gissat ");
         }
         else if(input.equals("eng")){
             toReturn.add("Choose difficulty!");
@@ -31,6 +32,7 @@ public class language {
             toReturn.add("That was not the word. Try Again!");
             toReturn.add("You found a letter!");
             toReturn.add("The maxmimum number of guesses is set to ");
+            toReturn.add("You have already guessed ");
         }
         return toReturn;
     }
