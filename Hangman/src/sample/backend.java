@@ -16,7 +16,7 @@ public class backend {
     public static ArrayList<String>  _language = new ArrayList<String> (); //this is for multilingual support
     public static String lang;
     public static String _secretword;
-    public static int _guess = 0;
+    public static int _guesses = 0;
     public static String _show[] = new String[999];
     public static int _maxguesses = 10;
     public static String _guessletters = "";
@@ -78,26 +78,9 @@ public class backend {
             }
             System.out.println(_language.get(2));
             String guess1 = input.next().toUpperCase();
-            String guessinput = Guess(guess1);
-            if(guessinput.equals("Congrats")){ // if you won
-                System.out.println(_language.get(4));
+            if(Guess(guess1)){
                 break;
             }
-            else if(guessinput.equals("already")){ //if you lost. aka the lifes are up
-                System.out.println(_language.get(8));
-            }
-            else if(guessinput.equals("lose")){ //if you lost. aka the lifes are up
-                System.out.println(_language.get(5));
-                break;
-            }
-            else if(guessinput.equals("notries")){ //if you lost. aka the lifes are up
-                System.out.println(_language.get(9));
-                break;
-            }
-            else{
-                System.out.println(guessinput);
-            }
-            
         }
     }
 
@@ -153,7 +136,7 @@ public class backend {
 
 
     }
-        public static String toSmallLetters(String input){
+    public static String toSmallLetters(String input){
         return input.toLowerCase();
     }
 
@@ -162,50 +145,69 @@ public class backend {
      * @param guess
      * @return
      */
-    public static String Guess(String guess){
+    public static boolean Guess(String guess){
         String returnstring = "";
+        Boolean breakIt = false;
         String check ="";
         for (int i = 0; i < _secretword.length(); i++) {
             _show[i] += check;
         }
         System.out.println(check);
-            if (_guess < _maxguesses) { //checks if you have any lives left
-                if (!_guessletters.contains(guess)) {
-                    if (guess.length() > 1) { //checks if you guessed a word or char.
-                        if (guess.equals(_secretword)) { //checks if you got the word right
-                            returnstring = "Congrats";
-                        } else {
-                            returnstring = _language.get(5);
-                        }
+        if (_guesses < _maxguesses) { //checks if you have any lives left
+            if (!_guessletters.contains(guess)) {
+                if (guess.length() > 1) { //checks if you guessed a word or char.
+                    if (guess.equals(_secretword)) { //checks if you got the word right
+                        returnstring = "Congrats";
                     } else {
-                        if (_secretword.contains(guess)) { //checks if the word contains the letter
-                            returnstring = _language.get(6);
-                            for (int i = 0; i < _secretword.length(); i++) {
-                                if (_secretword.charAt(i) == guess.charAt(0)) {
-                                    _show[i] = guess.toUpperCase().charAt(0) + "  ";
-                                }
+                        returnstring = _language.get(5);
+                    }
+                } else {
+                    if (_secretword.contains(guess)) { //checks if the word contains the letter
+                        returnstring = _language.get(6);
+                        for (int i = 0; i < _secretword.length(); i++) {
+                            if (_secretword.charAt(i) == guess.charAt(0)) {
+                                _show[i] = guess.toUpperCase().charAt(0) + "  ";
                             }
                         }
                     }
-                } else {
-                    returnstring = "already";
                 }
             } else {
-                returnstring = "notries";
-                System.out.println(8 + guess);
-                _guess--;
+                returnstring = "already";
             }
+        } else {
+            returnstring = "notries";
+            System.out.println(8 + guess);
+            _guesses--;
+        }
 
-            if(wincheck()) {
-                System.out.println("worksssss");
+        if(winCheck()) {
+            System.out.println("worksssss");
             returnstring = "Congrats";
 
         }
 
-        _guess++;
+        _guesses++;
         _guessletters += guess;
         System.out.println(_guessletters);
-        return returnstring;
+        if(returnstring.equals("Congrats")){ // if you won
+            System.out.println(_language.get(3));
+            breakIt = true;
+        }
+        else if(returnstring.equals("already")){ //if you lost. aka the lifes are up
+            System.out.println(_language.get(8));
+        }
+        else if(returnstring.equals("lose")){ //if you lost. aka the lifes are up
+            System.out.println(_language.get(5));
+            breakIt = true;
+        }
+        else if(returnstring.equals("notries")){ //if you lost. aka the lifes are up
+            System.out.println(_language.get(9));
+            breakIt = true;
+        }
+        else{
+            System.out.println(returnstring);
+        }
+        return breakIt;
     }
 
     //generates the line where you can see the how many letters and all of that.
@@ -218,19 +220,14 @@ public class backend {
             }
         }
     }
-    public static boolean wincheck(){
-        boolean win = false;
-        while(win = false){
-            for (int i = 0; i < _secretword.length(); i++) {
-                if (!_show[i].contains("_")){
-                    System.out.println(_show[i]);
-                    win = true;
-                }else{
-                     win = false;
-                }
+    public static boolean winCheck(){
+        boolean win = true;
+        for (int i = 0; i < _secretword.length(); i++) {
+            if (_show[i].contains("_")){
+                win = false;
             }
         }
-
         return win;
     }
+
 }
