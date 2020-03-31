@@ -23,7 +23,7 @@ public class Controller {
     @FXML
     public void initialize() throws IOException {
         res.getItems().addAll("800x600", "1280x720");
-        backend.run();
+        //backend.run();
     }
 
 

@@ -22,6 +22,7 @@ public class language {
             toReturn.add("Du hittade ett bokstav! ");
             toReturn.add("Max antalet gissngar satt till ");
             toReturn.add("Du har redan gissat ");
+            toReturn.add("Dina gissnigar är slut. Du död!");
         }
         else if(input.equals("eng")){
             toReturn.add("Choose difficulty!");
@@ -33,6 +34,8 @@ public class language {
             toReturn.add("You found a letter!");
             toReturn.add("The maxmimum number of guesses is set to ");
             toReturn.add("You have already guessed ");
+            toReturn.add("Your guesses are up. You dead!");
+
         }
         return toReturn;
     }

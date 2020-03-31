@@ -77,17 +77,25 @@ public class backend {
                 System.out.print(_show[i]);
             }
             System.out.println(_language.get(2));
-            String guess1 = input.next();
-            if((Guess(guess1)).equals("Congrats")){ // if you won
+            String guess1 = input.next().toUpperCase();
+            String guessinput = Guess(guess1);
+            if(guessinput.equals("Congrats")){ // if you won
                 System.out.println(_language.get(4));
                 break;
             }
-            else if(Guess(guess1).equals("lose")){ //if you lost. aka the lifes are up
+            else if(guessinput.equals("already")){ //if you lost. aka the lifes are up
+                System.out.println(_language.get(8));
+            }
+            else if(guessinput.equals("lose")){ //if you lost. aka the lifes are up
                 System.out.println(_language.get(5));
                 break;
             }
+            else if(guessinput.equals("notries")){ //if you lost. aka the lifes are up
+                System.out.println(_language.get(9));
+                break;
+            }
             else{
-                System.out.println(Guess(guess1));
+                System.out.println(guessinput);
             }
             
         }
@@ -109,7 +117,7 @@ public class backend {
             _secretword =  _SwedishWords.get(thenumber);
         }
 
-
+        System.out.println(_secretword);
     }
 
     /**
@@ -119,9 +127,10 @@ public class backend {
 
     public static void GenerateEnglishArray() throws IOException {
         //English words from https://www.ef.com/wwen/english-resources/english-vocabulary/top-1000-words/
-        BufferedReader abc = new BufferedReader(new FileReader("/Users/linusromland/GitHub/hangmanwithserver/Hangman/src/sample/english.txt"));
+        BufferedReader abc = new BufferedReader(new FileReader("C:\\Users\\Linus Romland\\Desktop\\GitHub\\hangmanwithserver\\Hangman\\src\\sample\\english.txt"));
         String s;
         while((s=abc.readLine())!=null) {
+            s = s.toUpperCase();
             _EnglishWords.add(s);
         }
         abc.close();
@@ -134,9 +143,10 @@ public class backend {
      */
     public static void GenerateSwedishArray() throws IOException {
         //Swedish words from https://www.101languages.net/swedish/most-common-swedish-words/
-        BufferedReader abc = new BufferedReader(new FileReader("/Users/linusromland/GitHub/hangmanwithserver/Hangman/src/sample/swedish.txt"));
+        BufferedReader abc = new BufferedReader(new FileReader("C:\\Users\\Linus Romland\\Desktop\\GitHub\\hangmanwithserver\\Hangman\\src\\sample\\swedish.txt"));
         String s;
         while((s=abc.readLine())!=null) {
+            s = s.toUpperCase();
             _SwedishWords.add(s); //adds one line at the type from the text file
         }
         abc.close();
@@ -154,34 +164,44 @@ public class backend {
      */
     public static String Guess(String guess){
         String returnstring = "";
-        if(_guess < _maxguesses) { //checks if you have any lives left
-            if(_guessletters.contains(guess)) {
-                if (guess.length() > 1) { //checks if you guessed a word or char.
-                    if (guess.equals(_secretword)) { //checks if you got the word right
-                        returnstring = "Congrats";
+        String check ="";
+        for (int i = 0; i < _secretword.length(); i++) {
+            _show[i] += check;
+        }
+        System.out.println(check);
+            if (_guess < _maxguesses) { //checks if you have any lives left
+                if (!_guessletters.contains(guess)) {
+                    if (guess.length() > 1) { //checks if you guessed a word or char.
+                        if (guess.equals(_secretword)) { //checks if you got the word right
+                            returnstring = "Congrats";
+                        } else {
+                            returnstring = _language.get(5);
+                        }
                     } else {
-                        returnstring = _language.get(5);
-                    }
-                } else {
-                    if (_secretword.contains(guess)) { //checks if the word contains the letter
-                        returnstring = _language.get(6);
-                        for (int i = 0; i < _secretword.length(); i++) {
-                            if (_secretword.charAt(i) == guess.charAt(0)) {
-                                _show[i] = guess.toUpperCase().charAt(0) + "  ";
+                        if (_secretword.contains(guess)) { //checks if the word contains the letter
+                            returnstring = _language.get(6);
+                            for (int i = 0; i < _secretword.length(); i++) {
+                                if (_secretword.charAt(i) == guess.charAt(0)) {
+                                    _show[i] = guess.toUpperCase().charAt(0) + "  ";
+                                }
                             }
                         }
                     }
+                } else {
+                    returnstring = "already";
                 }
+            } else {
+                returnstring = "notries";
+                System.out.println(8 + guess);
+                _guess--;
             }
-            else{
-                returnstring = "already";
-            }
+
+            if(wincheck()) {
+                System.out.println("worksssss");
+            returnstring = "Congrats";
+
         }
-        else{
-            returnstring = "lose";
-            System.out.println(8 + guess);
-            _guess--;
-        }
+
         _guess++;
         _guessletters += guess;
         System.out.println(_guessletters);
@@ -197,5 +217,20 @@ public class backend {
                 _show[i] = "   ";
             }
         }
+    }
+    public static boolean wincheck(){
+        boolean win = false;
+        while(win = false){
+            for (int i = 0; i < _secretword.length(); i++) {
+                if (!_show[i].contains("_")){
+                    System.out.println(_show[i]);
+                    win = true;
+                }else{
+                     win = false;
+                }
+            }
+        }
+
+        return win;
     }
 }
