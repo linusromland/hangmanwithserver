@@ -14,12 +14,14 @@ public class backend {
     public static ArrayList<String>  _EnglishWords = new ArrayList<String> ();
     public static ArrayList<String>  _SwedishWords = new ArrayList<String> ();
     public static ArrayList<String>  _language = new ArrayList<String> (); //this is for multilingual support
-    public static String lang;
+    public static String _lang;
     public static String _secretword;
     public static int _guesses = 0;
     public static String _show[] = new String[999];
     public static int _maxguesses = 10;
     public static String _guessletters = "";
+    public static Scanner _input = new Scanner(System.in);
+
 
     /**
      * This main method is temporary for me to test the code
@@ -30,45 +32,74 @@ public class backend {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-
-        run();
+        setup();
     }
 
-    /**
-     * Where it calls other methods and takes input and sets language.
-     * @throws IOException
-     */
-    public static void run() throws IOException {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Choose language...");
-        System.out.println("1 for English");
-        System.out.println("0 for Swedish");
-        int temp = input.nextInt();
+    public static void setup() throws IOException {
+        System.out.println("Choose what language you want.");
+        System.out.println("(1) - English");
+        System.out.println("(2) - Swedish");
+        int temp = _input.nextInt();
         if (temp == 1){     //sets the language
-            lang = "eng";
+            _lang = "eng";
             GenerateEnglishArray();
-            GenerateSecretWord("eng");
             _language = language.lang("eng");
         }
-        else if(temp == 0){
-            lang = "swe";
+        else if(temp == 2){
+            _lang = "swe";
             GenerateSwedishArray();
-            GenerateSecretWord("swe");
             _language = language.lang("swe");
 
         }
         else{
             System.out.println("You dum dum!");
             System.out.println("Language set to default(English)...");
-            lang = "eng";
+            _lang = "eng";
             GenerateEnglishArray();
-            GenerateSecretWord("eng");
             _language = language.lang("eng");
-
+            temp = 1;
+    }
+        System.out.println(_language.get(11));
+        int temp2 = _input.nextInt();
+        if(temp2 == 1){
+            if(temp == 1){
+                GenerateSecretWord("eng");
+            }
+            else {
+                GenerateSecretWord("swe");
+            }
+            run();
         }
+        else{
+            System.out.println(_language.get(12));
+            System.out.println("sorry only local haha f u");
+            int temp3 = _input.nextInt();
+            if (temp3 == 1){
+                System.out.println("dont be stupppppid only local.. ");
+            }
+            else{
+                System.out.println(_language.get(13));
+                String temp4 = _input.nextLine();
+                _secretword = temp4;
+                for (int i = 0; i < 200; i++) {
+                    System.out.println(" ");
+                }
+                System.out.println(_language.get(15));
+                System.out.println(_language.get(14));
+                run();
+            }
+        }
+
+
+/**
+ * Where it calls other methods and takes input and sets language.
+ * @throws IOException
+ */
+    }
+    public static void run() throws IOException {
         System.out.println(_language.get(0)); //sets difficulty
         System.out.println(_language.get(1));
-        int ans = input.nextInt();
+        int ans = _input.nextInt();
         _maxguesses = ans;
         System.out.println(_language.get(7) + ans);
         printlines(_secretword);
@@ -77,7 +108,7 @@ public class backend {
                 System.out.print(_show[i]);
             }
             System.out.println(_language.get(2));
-            String guess1 = input.next().toUpperCase();
+            String guess1 = _input.next().toUpperCase();
             if(Guess(guess1)){
                 break;
             }
@@ -100,7 +131,6 @@ public class backend {
             _secretword =  _SwedishWords.get(thenumber);
         }
 
-        System.out.println(_secretword);
     }
 
     /**
@@ -187,6 +217,7 @@ public class backend {
         }
 
         _guesses++;
+        System.out.println(_maxguesses - _guesses + _language.get(10));
         _guessletters += guess;
         System.out.println(_guessletters);
         if(returnstring.equals("Congrats")){ // if you won
