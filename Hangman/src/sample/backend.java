@@ -140,7 +140,7 @@ public class backend {
 
     public static void GenerateEnglishArray() throws IOException {
         //English words from https://www.ef.com/wwen/english-resources/english-vocabulary/top-1000-words/
-        BufferedReader abc = new BufferedReader(new FileReader("C:\\Users\\Linus Romland\\Desktop\\GitHub\\hangmanwithserver\\Hangman\\src\\sample\\english.txt"));
+        BufferedReader abc = new BufferedReader(new FileReader("src/sample/english.txt"));
         String s;
         while((s=abc.readLine())!=null) {
             s = s.toUpperCase();
@@ -156,7 +156,7 @@ public class backend {
      */
     public static void GenerateSwedishArray() throws IOException {
         //Swedish words from https://www.101languages.net/swedish/most-common-swedish-words/
-        BufferedReader abc = new BufferedReader(new FileReader("C:\\Users\\Linus Romland\\Desktop\\GitHub\\hangmanwithserver\\Hangman\\src\\sample\\swedish.txt"));
+        BufferedReader abc = new BufferedReader(new FileReader("src/sample/swedish.txt"));
         String s;
         while((s=abc.readLine())!=null) {
             s = s.toUpperCase();
@@ -251,6 +251,7 @@ public class backend {
             }
         }
     }
+
     public static boolean winCheck(){
         boolean win = true;
         for (int i = 0; i < _secretword.length(); i++) {
