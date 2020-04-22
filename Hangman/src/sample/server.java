@@ -32,12 +32,11 @@ public class server {
                 out2 = new PrintWriter(sock.getOutputStream(), true);
                 out2.println("hahaahha not 1");
                 out2.flush();
-
             }
             TheThreads t1 = new TheThreads(sock, num, out1, out2);
             if(num<3){
-                System.out.println("yeyeyeye");
-                t1.run();
+                System.out.println("starte");
+                t1.running();
             }
             else{
                 PrintWriter pwrite = new PrintWriter(sock.getOutputStream(), true);
@@ -78,8 +77,7 @@ class TheThreads extends Thread{
         out2 = out22;
     }
 
-    @Override
-    public void run(){
+    public void running(){
         Thread t = new Thread(new Runnable(){
 
             @Override
@@ -90,7 +88,7 @@ class TheThreads extends Thread{
                     try {
                         String receiveMessage;
                         if((receiveMessage = Receive.read().readLine()) != null) {
-                            System.out.println("hahahhahahahakdjkashjkfshdkfhskjhjfdkj");
+                            System.out.println("in");
                             if (num == 1){
                                 out1.println(receiveMessage);
                                 out1.flush();
@@ -110,6 +108,7 @@ class TheThreads extends Thread{
                     }
                 }
             }});
+        t.run();
 
     }
 }
