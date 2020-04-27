@@ -16,9 +16,7 @@ import java.util.ResourceBundle;
 
 public class Main extends Application {
 
-    private static Stage primaryStage;
     public static Scene _defaultscene;
-    public static String _keypress;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,16 +26,14 @@ public class Main extends Application {
         primaryStage.setScene(_defaultscene);
         primaryStage.show();
     }
-    public static String guess(){
+    public static void guess(){
         //Setup keylistener
         _defaultscene.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                _keypress = keyEvent.getCharacter();
-                System.out.println(keyEvent.getCharacter());
+                keyEvent.getCharacter();
             }
         });
-        return _keypress;
     }
 
     public static void main(String[] args) {

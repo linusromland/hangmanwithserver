@@ -94,7 +94,6 @@ public class Controller {
     }
 
     public void guess() {
-            System.out.println(Main.guess());
     }
 
     public void handleSubmitButtonAction3(ActionEvent actionEvent) {
