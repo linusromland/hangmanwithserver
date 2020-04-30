@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -71,16 +73,18 @@ public class Controller {
 
     public void initialize() throws IOException {
         resourcepack.loadDefaultPack(primary);
-        setPacks();
+        SetComboBoxes();
         gamemode.setVisible(false);
         localmulti.setVisible(false);
         guess.setVisible(false);
         bigtext.setVisible(false);
-        lang.getItems().addAll("Svenska", "English");
-    }
-    public void setPacks(){
-        ArrayList<File> PacksArray = resourcepack.getPacks(); //Gets all packs from which folders exist
 
+    }
+
+    public void SetComboBoxes() {
+        lang.getItems().addAll("English", "Svenska");
+        lang.setValue(lang.getItems().get(0));
+        ArrayList<File> PacksArray = resourcepack.getPacks(); //Gets all packs from which folders exist
         //Loop through all packs
         for (File pack : PacksArray) {
             System.out.println(pack);
@@ -88,7 +92,6 @@ public class Controller {
         }
         packs.setValue(PacksArray.get(0).getName());
     }
-
 
     public void gamemodescene() {
         gamemode.setVisible(true);
@@ -166,6 +169,7 @@ public class Controller {
         System.out.println(_guessletters);
         if (returnstring.equals("Congrats")) { // if you won
             responsguess.setText(_language.get(3));
+            playSound("src/sample/resourcepacks/default/sounds/win.mp3");
             breakIt = true;
         } else if (returnstring.equals("already")) { //if you lost. aka the lifes are up
             responsguess.setText(_language.get(8));
@@ -241,21 +245,11 @@ public class Controller {
         Guess(inputguess.getText().toUpperCase());
         inputguess.clear();
     }
+
     public static synchronized void playSound(final String url) {
-        new Thread(new Runnable() {
-            // The wrapper thread is unnecessary, unless it blocks on the
-            // Clip finishing; see comments.
-            public void run() {
-                try {
-                    Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Main.class.getResourceAsStream("/path/to/sounds/" + url));
-                    clip.open(inputStream);
-                    clip.start();
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
-                }
-            }
-        }).start();
+        Media hit = new Media(new File(url).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        mediaPlayer.play();
+        System.out.println("Sound played...");
     }
 }

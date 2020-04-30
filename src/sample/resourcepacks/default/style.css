@@ -7,6 +7,10 @@
     -fx-font-size: 15px;
     -fx-padding: 100%;
 }
+#packtext{
+    -fx-font-size: 15px;
+    -fx-padding: 100%;
+}
 #guessLines{
     -fx-font-size: 30px;
 }

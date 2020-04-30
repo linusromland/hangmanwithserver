@@ -23,13 +23,16 @@
 
    <ComboBox fx:id="lang"
              GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+      <Text fx:id="packtext" text="Choose ResourcePack:"
+            GridPane.columnIndex="0" GridPane.rowIndex="4"
+            GridPane.columnSpan="2"/>
       <ComboBox fx:id="packs"
-                GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                GridPane.columnIndex="0" GridPane.rowIndex="5"/>
       <Text fx:id="dumdum"
-            GridPane.columnIndex="0" GridPane.rowIndex="5"
+            GridPane.columnIndex="0" GridPane.rowIndex="8"
             GridPane.columnSpan="2"/>
 
-      <Button text="submit" GridPane.columnIndex="0" GridPane.rowIndex="4"
+      <Button text="submit" GridPane.columnIndex="0" GridPane.rowIndex="7"
               GridPane.columnSpan="2"
               onAction="#handleSubmitButtonAction"/>
 
