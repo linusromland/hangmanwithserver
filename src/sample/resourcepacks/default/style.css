@@ -1,0 +1,21 @@
+#title{
+    -fx-text-alignment: center;
+    -fx-font-size: 50px;
+    -fx-padding: 100%;
+}
+#langg{
+    -fx-font-size: 15px;
+    -fx-padding: 100%;
+}
+#guessLines{
+    -fx-font-size: 30px;
+}
+#guesstitle{
+    -fx-font-size: 30px;
+}
+#primgrid{
+    -fx-background-color: gray;
+}
+#primary{
+    -fx-background-color: gray;
+}

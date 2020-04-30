@@ -7,16 +7,13 @@
         <option name="description" value="" />
         <option name="htmlPlaceholderId" value="" />
         <option name="title" value="Hangman" />
-        <option name="vendor" value="Linus Romland" />
-        <option name="version" value="pre-alpha0.1" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
       </options>
     </properties>
     <root id="root">
       <element id="archive" name="Hangman.jar">
         <element id="module-output" name="Hangman" />
-        <element id="directory" name="META-INF">
-          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-        </element>
       </element>
     </root>
   </artifact>

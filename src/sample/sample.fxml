@@ -14,20 +14,22 @@
 
    <Text fx:id="title" text="Hangman in Java"
          GridPane.columnIndex="0" GridPane.rowIndex="0"
-         GridPane.columnSpan="2"/>
+         GridPane.columnSpan="1"/>
 
 
-   <Text text="Choose Language:"
+   <Text fx:id="langg" text="Choose Language:"
          GridPane.columnIndex="0" GridPane.rowIndex="2"
          GridPane.columnSpan="2"/>
 
    <ComboBox fx:id="lang"
              GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+      <ComboBox fx:id="packs"
+                GridPane.columnIndex="0" GridPane.rowIndex="4"/>
       <Text fx:id="dumdum"
             GridPane.columnIndex="0" GridPane.rowIndex="5"
             GridPane.columnSpan="2"/>
 
-      <Button text="submit" GridPane.columnIndex="1" GridPane.rowIndex="3"
+      <Button text="submit" GridPane.columnIndex="0" GridPane.rowIndex="4"
               GridPane.columnSpan="2"
               onAction="#handleSubmitButtonAction"/>
 
@@ -68,10 +70,21 @@
       <Text fx:id="guesstitle"
             GridPane.columnIndex="0" GridPane.rowIndex="0"
             GridPane.columnSpan="2"/>
-      <TextField fx:id="guessfield"
-                 GridPane.columnIndex="0" GridPane.rowIndex="2"
+      <Text fx:id="guessLines"
+            GridPane.columnIndex="0" GridPane.rowIndex="2"
+            GridPane.columnSpan="2"/>
+      <Text fx:id="responsguess"
+            GridPane.columnIndex="0" GridPane.rowIndex="5"
+            GridPane.columnSpan="2"/>
+      <TextField fx:id="inputguess" onAction="#handleSubmitButtonAction5"
+                 GridPane.columnIndex="0" GridPane.rowIndex="3"
                  GridPane.columnSpan="2"/>
-
+   </GridPane>
+   <GridPane fx:id="bigtext"
+             xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="1" vgap="1">
+      <Text fx:id="bigtexten"
+            GridPane.columnIndex="0" GridPane.rowIndex="0"
+            GridPane.columnSpan="2"/>
 
    </GridPane>
 </GridPane>

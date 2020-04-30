@@ -26,15 +26,6 @@ public class Main extends Application {
         primaryStage.setScene(_defaultscene);
         primaryStage.show();
     }
-    public static void guess(){
-        //Setup keylistener
-        _defaultscene.setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                keyEvent.getCharacter();
-            }
-        });
-    }
 
     public static void main(String[] args) {
         launch(args);

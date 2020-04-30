@@ -18,6 +18,7 @@ public class backend {
 
     /**
      * generates the secret words if the correct language from the right libary of words.
+     *
      * @param Language
      */
     public static String GenerateSecretWord(String Language) {
@@ -51,7 +52,7 @@ public class backend {
 
     public static ArrayList<String> GenerateEnglishArray() throws IOException {
         //English words from https://www.ef.com/wwen/english-resources/english-vocabulary/top-1000-words/
-        BufferedReader abc = new BufferedReader(new FileReader("src/sample/english.txt"));
+        BufferedReader abc = new BufferedReader(new FileReader("src/sample/languages/english.txt"));
         String s;
         while ((s = abc.readLine()) != null) {
             s = s.toUpperCase();
@@ -70,7 +71,7 @@ public class backend {
      */
     public static ArrayList<String> GenerateSwedishArray() throws IOException {
         //Swedish words from https://www.101languages.net/swedish/most-common-swedish-words/
-        BufferedReader abc = new BufferedReader(new FileReader("src/sample/swedish.txt"));
+        BufferedReader abc = new BufferedReader(new FileReader("src/sample/languages/swedish.txt"));
         String s;
         while ((s = abc.readLine()) != null) {
             s = s.toUpperCase();
@@ -78,8 +79,27 @@ public class backend {
         }
         abc.close();
         return _SwedishWords;
+    }
 
+    //generates the line where you can see the how many letters and all of that.
+    public static String[] printlines(String input) {
+        String[] show = new String[999];
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != ' ') {
+                show[i] = "___ ";
+            } else {
+                show[i] = "   ";
+            }
+        }
+        return show;
+    }
 
+    public static String stringarraytostring(String[] input) {
+        String output = "";
+        for (int i = 0; i < _secretword.length(); i++) {
+            output = output + input[i];
+        }
+        return output;
     }
 
 }
