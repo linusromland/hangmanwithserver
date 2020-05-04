@@ -33,4 +33,7 @@ public class resourcepack {
     public static void loadDefaultPack(GridPane main) {
         main.getStylesheets().add("sample/resourcepacks/default/style.css");
     }
+    public static String soundircreate(){
+        return "sample/resourcepacks/" + selectedPack + "/sounds/";
+    }
 }

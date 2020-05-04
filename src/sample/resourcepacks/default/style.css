@@ -23,3 +23,6 @@
 #primary{
     -fx-background-color: gray;
 }
+#replyend{
+    -fx-font-size: 30px;
+}

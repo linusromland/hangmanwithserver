@@ -74,20 +74,29 @@
             GridPane.columnIndex="0" GridPane.rowIndex="0"
             GridPane.columnSpan="2"/>
       <Text fx:id="guessLines"
+            GridPane.columnIndex="0" GridPane.rowIndex="4"
+            GridPane.columnSpan="2"/>
+      <Text fx:id="guessesleft"
             GridPane.columnIndex="0" GridPane.rowIndex="2"
             GridPane.columnSpan="2"/>
+      <Text fx:id="guessedletters"
+            GridPane.columnIndex="2" GridPane.rowIndex="2"
+            GridPane.columnSpan="2"/>
       <Text fx:id="responsguess"
-            GridPane.columnIndex="0" GridPane.rowIndex="5"
+            GridPane.columnIndex="0" GridPane.rowIndex="6"
             GridPane.columnSpan="2"/>
       <TextField fx:id="inputguess" onAction="#handleSubmitButtonAction5"
-                 GridPane.columnIndex="0" GridPane.rowIndex="3"
+                 GridPane.columnIndex="0" GridPane.rowIndex="5"
                  GridPane.columnSpan="2"/>
    </GridPane>
-   <GridPane fx:id="bigtext"
+   <GridPane fx:id="endgame"
              xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="1" vgap="1">
-      <Text fx:id="bigtexten"
+      <Text fx:id="replyend"
             GridPane.columnIndex="0" GridPane.rowIndex="0"
             GridPane.columnSpan="2"/>
+      <Button fx:id="backtostart"
+              onAction="#handleSubmitButtonAction6" GridPane.columnIndex="0" GridPane.rowIndex="3"
+              GridPane.columnSpan="2"/>
 
    </GridPane>
 </GridPane>

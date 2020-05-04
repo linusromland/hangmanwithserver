@@ -34,6 +34,7 @@ public class language {
             toReturn.add("Lokal Flerspelarläge");
             toReturn.add("Online Flerspelarläge kommer snart!");
             toReturn.add("Välj ord");
+            toReturn.add("Huvudmenyn");
 
 
 
@@ -59,6 +60,8 @@ public class language {
             toReturn.add("Local Multiplayer");
             toReturn.add("Online Multiplayer coming soon!");
             toReturn.add("Set Word");
+            toReturn.add("Main menu");
+
 
 
 

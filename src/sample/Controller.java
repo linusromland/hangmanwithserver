@@ -25,13 +25,15 @@ public class Controller {
     public String _secretword = "";
     public Boolean _localmultiplayer;
     public String[] _show = new String[999];
-    public int _guesses;
+    public int _guesses = 0;
     public int _maxguesses = 15;
     public String _guessletters = "";
+    public String _sounddir = "";
+
     @FXML
     private GridPane guess;
     @FXML
-    private GridPane bigtext;
+    private GridPane endgame;
     @FXML
     private GridPane localmulti;
     @FXML
@@ -47,6 +49,8 @@ public class Controller {
     @FXML
     private Text guessLines;
     @FXML
+    private Text guessedletters;
+    @FXML
     private Text online;
     @FXML
     private Text gamemodetitle;
@@ -55,13 +59,17 @@ public class Controller {
     @FXML
     private Text responsguess;
     @FXML
-    private Text bigtexten;
+    private Text replyend;
+    @FXML
+    private Text guessesleft;
     @FXML
     private Button localmultisubmit;
     @FXML
     private Button textsingleplayer;
     @FXML
     private Button localmultiplayer;
+    @FXML
+    private Button backtostart;
     @FXML
     public ComboBox lang;
     @FXML
@@ -77,8 +85,7 @@ public class Controller {
         gamemode.setVisible(false);
         localmulti.setVisible(false);
         guess.setVisible(false);
-        bigtext.setVisible(false);
-
+        endgame.setVisible(false);
     }
 
     public void SetComboBoxes() {
@@ -121,6 +128,11 @@ public class Controller {
         guesstitle.setText(_language.get(2));
     }
 
+    public void disableguess(){
+        backtostart.setText(_language.get(20));
+        guess.setVisible(false);
+    }
+
     public boolean Guess(String guess) {
         String returnstring = "";
         Boolean breakIt = false;
@@ -149,7 +161,9 @@ public class Controller {
                     }
                 }
             } else {
+                _guesses--;
                 returnstring = "already";
+
             }
         } else {
             returnstring = "notries";
@@ -162,23 +176,33 @@ public class Controller {
             returnstring = "Congrats";
 
         }
+        if (!_guessletters.contains(guess)) {
+            _guesses++;
+        }
+        guessesleft.setText(_maxguesses - _guesses + _language.get(10));
+        if (guess.length() < 1) {
+            if (!_guessletters.contains(guess)) {
+                _guessletters += guess;
+                System.out.println(_guessletters);
+                guessedletters.setText(_guessletters);
+            }
 
-        _guesses++;
-        System.out.println(_maxguesses - _guesses + _language.get(10));
-        _guessletters += guess;
-        System.out.println(_guessletters);
+        }
         if (returnstring.equals("Congrats")) { // if you won
-            responsguess.setText(_language.get(3));
-            playSound("src/sample/resourcepacks/default/sounds/win.mp3");
-            breakIt = true;
+            replyend.setText(_language.get(3));
+            disableguess();
+            endgame.setVisible(true);
+            playSound( _sounddir + "win.mp3");
         } else if (returnstring.equals("already")) { //if you lost. aka the lifes are up
-            responsguess.setText(_language.get(8));
+            responsguess.setText(_language.get(8) + guess);
         } else if (returnstring.equals("lose")) { //if you lost. aka the lifes are up
-            responsguess.setText(_language.get(5));
-            breakIt = true;
+            replyend.setText(_language.get(5));
+            disableguess();
+            endgame.setVisible(true);
         } else if (returnstring.equals("notries")) { //if you lost. aka the lifes are up
-            responsguess.setText(_language.get(9));
-            breakIt = true;
+            replyend.setText(_language.get(9));
+            disableguess();
+            endgame.setVisible(true);
         } else {
             responsguess.setText(returnstring);
         }
@@ -211,11 +235,13 @@ public class Controller {
 
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
-        if (lang.getValue() != null) {
+        if (lang.getValue() != null && packs.getValue() != null) {
             primgrid.setVisible(false);
             _language = language.lang(lang.getValue().toString());
             _Words = backend.generatewordlist(lang.getValue().toString());
             resourcepack.selectPack(packs.getValue().toString(), primary);
+            _sounddir = resourcepack.soundircreate();
+            guessesleft.setText(_maxguesses - _guesses + _language.get(10));
             gamemodescene();
         } else {
             dumdum.setText("You need to select a language!");
@@ -229,16 +255,10 @@ public class Controller {
 
     }
 
-    public void bigguesss(String input) throws InterruptedException {
-        if (input != null) {
-            bigtext.setVisible(true);
-            guess.setVisible(false);
-            bigtexten.setFont(Font.font(200));
-            bigtexten.setText(input);
-            TimeUnit.SECONDS.sleep(1);
-            bigtext.setVisible(false);
-            guess.setVisible(true);
-        }
+    public void clearGame(){
+        _guesses = 0;
+        _guessletters = "";
+        _secretword = "";
     }
 
     public void handleSubmitButtonAction5(ActionEvent actionEvent) throws InterruptedException {
@@ -251,5 +271,11 @@ public class Controller {
         MediaPlayer mediaPlayer = new MediaPlayer(hit);
         mediaPlayer.play();
         System.out.println("Sound played...");
+    }
+
+    public void handleSubmitButtonAction6(ActionEvent actionEvent) {
+        endgame.setVisible(false);
+        clearGame();
+        primgrid.setVisible(true);
     }
 }
