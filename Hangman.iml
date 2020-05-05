@@ -17,5 +17,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="OpenJFX" level="project" />
+    <orderEntry type="library" name="JLayer1.0" level="project" />
   </component>
 </module>

@@ -10,11 +10,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javazoom.jl.player.Player;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -267,9 +269,14 @@ public class Controller {
     }
 
     public static synchronized void playSound(final String url) {
-        Media hit = new Media(new File(url).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(hit);
-        mediaPlayer.play();
+        try{
+            FileInputStream fis = new FileInputStream(url);
+            Player playMP3 = new Player(fis);
+            playMP3.play();
+
+        }  catch(Exception e){
+            System.out.println(e);
+        }
         System.out.println("Sound played...");
     }
 
