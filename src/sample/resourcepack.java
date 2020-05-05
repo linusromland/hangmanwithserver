@@ -34,6 +34,6 @@ public class resourcepack {
         main.getStylesheets().add("sample/resourcepacks/default/style.css");
     }
     public static String soundircreate(){
-        return "sample/resourcepacks/" + selectedPack + "/sounds/";
+        return "src/sample/resourcepacks/" + selectedPack + "/sounds/";
     }
 }
