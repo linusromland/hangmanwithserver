@@ -22,7 +22,7 @@ public class backend {
      * @param Language
      */
     public static String GenerateSecretWord(String Language) {
-        if (Language.equals("English")) {
+        if (Language.equals("English")) { //checks what language and then generating the correct word.
             int high = _EnglishWords.size();
             int thenumber = new Random().nextInt(high) + 0;
             _secretword = _EnglishWords.get(thenumber);
@@ -35,6 +35,12 @@ public class backend {
 
     }
 
+    /**
+     * Simple method that checks the language and generates the correct array.
+     * @param in
+     * @return
+     * @throws IOException
+     */
     public static ArrayList<String> generatewordlist(String in) throws IOException {
         if (in.equals("Svenska")) {
             return GenerateSwedishArray();
@@ -86,7 +92,7 @@ public class backend {
         String[] show = new String[999];
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) != ' ') {
-                show[i] = "___ ";
+                show[i] = "___ "; //prints __ or spaces.
             } else {
                 show[i] = "   ";
             }
@@ -94,7 +100,7 @@ public class backend {
         return show;
     }
 
-    public static String stringarraytostring(String[] input) {
+    public static String stringarraytostring(String[] input) { //simple method that takes Array and creates it to a String.
         String output = "";
         for (int i = 0; i < _secretword.length(); i++) {
             output = output + input[i];

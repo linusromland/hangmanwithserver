@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
+    //some global varibles for use later in the code.
+
     public ArrayList<String> _Words = new ArrayList<String>();
     public ArrayList<String> _language = new ArrayList<String>();
     public String _secretword = "";
@@ -32,6 +34,8 @@ public class Controller {
     public String _guessletters = "";
     public String _sounddir = "";
 
+
+    //imports of all the JavaFX FXML things.
     @FXML
     private GridPane guess;
     @FXML
@@ -81,6 +85,8 @@ public class Controller {
     @FXML
     private TextField inputguess;
 
+    //sets upp the scene. Hides the scenes not shown in the start. Also check what availble resourcepacks are availble.
+    // And adds them in the combobox and also defaults to English and default resourcepack
     public void initialize() throws IOException {
         resourcepack.loadDefaultPack(primary);
         SetComboBoxes();
@@ -90,6 +96,9 @@ public class Controller {
         endgame.setVisible(false);
     }
 
+    /**
+     * Sets upp the Comboboxes for lang and resourcepack.
+     */
     public void SetComboBoxes() {
         lang.getItems().addAll("English", "Svenska");
         lang.setValue(lang.getItems().get(0));
@@ -102,6 +111,9 @@ public class Controller {
         packs.setValue(PacksArray.get(0).getName());
     }
 
+    /**
+     * Setup for the Gamemode scene. Puts the text in the buttons from the correct language.
+     */
     public void gamemodescene() {
         gamemode.setVisible(true);
         gamemodetitle.setFont(Font.font(20));
@@ -111,6 +123,9 @@ public class Controller {
         online.setText(_language.get(18));
     }
 
+    /**
+     * setup for local multi scene.
+     */
     public void localMultiplayer() {
         localmultisubmit.setText(_language.get(19));
         localmulti.setVisible(true);
@@ -118,23 +133,33 @@ public class Controller {
 
     }
 
+    /**
+     * setup for singleplayer. all it really does is actually calls the method for generating the secret word.
+     */
     public void singleplayer() {
         _secretword = backend.GenerateSecretWord(lang.getValue().toString());
-        System.out.println(_secretword);
+        // Remove the comment down bellow if you want see the secret word in the terminal.
+        //System.out.println(_secretword);
     }
 
+    //setups for the guess scene
     public void gimmeguess() {
         guess.setVisible(true);
         _show = backend.printlines(_secretword);
         guessLines.setText(backend.stringarraytostring(_show));
         guesstitle.setText(_language.get(2));
     }
-
+    //disable for the guess and also sets text.
     public void disableguess(){
         backtostart.setText(_language.get(20));
         guess.setVisible(false);
     }
 
+    /**
+     * The actuall method where it checks the guess and also says if it is correct and things like thtat.
+     * @param guess
+     * @return
+     */
     public boolean Guess(String guess) {
         String returnstring = "";
         Boolean breakIt = false;
@@ -181,7 +206,7 @@ public class Controller {
         if (!_guessletters.contains(guess)) {
             _guesses++;
         }
-        guessesleft.setText(_maxguesses - _guesses + _language.get(10));
+        guessesleft.setText(_maxguesses - _guesses + _language.get(10)); //sets the text and shows how many lifes left.
         if (guess.length() < 1) {
             if (!_guessletters.contains(guess)) {
                 _guessletters += guess;
@@ -212,6 +237,10 @@ public class Controller {
         return breakIt;
     }
 
+    /**
+     * //checks if you got the word rightf
+     * @return
+     */
     public boolean winCheck() {
         boolean win = true;
         for (int i = 0; i < _secretword.length(); i++) {
@@ -221,7 +250,7 @@ public class Controller {
         }
         return win;
     }
-
+    //lot of button handler to check if you pressed a button. And changes scene and calls methods above.
     public void handleSubmitButtonAction3(ActionEvent actionEvent) {
         gamemode.setVisible(false);
         localMultiplayer();
@@ -235,6 +264,11 @@ public class Controller {
         gimmeguess();
     }
 
+    /**
+     * The first one that sets the sounddir, words, language and all of that.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
         if (lang.getValue() != null && packs.getValue() != null) {
@@ -256,7 +290,7 @@ public class Controller {
         gimmeguess();
 
     }
-
+    //clears the game for a new run.
     public void clearGame(){
         _guesses = 0;
         _guessletters = "";
@@ -268,6 +302,10 @@ public class Controller {
         inputguess.clear();
     }
 
+    /**
+     * sound player. NEEDS SPECIAL LIB!! CHECK GITHUB FOR MORE INFORMATION
+     * @param url
+     */
     public static synchronized void playSound(final String url) {
         try{
             FileInputStream fis = new FileInputStream(url);

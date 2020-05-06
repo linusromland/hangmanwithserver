@@ -13,6 +13,10 @@ public class resourcepack {
 
     public static String selectedPack;
 
+    /**
+     * checks the resourcepack folder and also adds them to the combobox.
+     * @return
+     */
     public static ArrayList getPacks() {
         File[] packs = new File("src/sample/resourcepacks/").listFiles(); //Get all packs from packs folder
 
@@ -21,6 +25,11 @@ public class resourcepack {
         return out;
     }
 
+    /**
+     * selects the resourcepack.
+     * @param pack
+     * @param main
+     */
     public static void selectPack(String pack, GridPane main) {
         System.out.println("new pack selected: " + pack);
 
@@ -30,9 +39,18 @@ public class resourcepack {
         main.getStylesheets().add("sample/resourcepacks/" + pack + "/style.css");
     }
 
+    /**
+     * loads the default pack.
+     * @param main
+     */
     public static void loadDefaultPack(GridPane main) {
         main.getStylesheets().add("sample/resourcepacks/default/style.css");
     }
+
+    /**
+     * creats the sound dir for the sound files coresponding to the right resourcepack. 
+     * @return
+     */
     public static String soundircreate(){
         return "src/sample/resourcepacks/" + selectedPack + "/sounds/";
     }

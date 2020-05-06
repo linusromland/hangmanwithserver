@@ -18,6 +18,11 @@ public class Main extends Application {
 
     public static Scene _defaultscene;
 
+    /*
+    YOU NEED  Java11, OpenJFX11 (JavaFX), and a custom lib for the soundplayuer
+    CHECK GITHUB FOR MORE INFORMATION!!!!!
+     */
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
